@@ -1,0 +1,13 @@
+[Unit]
+Description=Pigfarm
+After=syslog.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/app/
+User=pi
+Group=pi
+ExecStart=/usr/bin/python3 /home/pi/app/se12.py
+
+[Install]
+WantedBy=multi-user.target
