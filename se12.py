@@ -589,13 +589,22 @@ class Se12Proc():
 
     # Service menu
     def drawServiceMenu(self, worker):
+        eth0_ok = False
         disp = "IP: "
         try:
             ipv4 = os.popen('ip addr show eth0').read().split("inet ")[1].split("/")[0]
             disp += ipv4
             disp += "\nSSH:22, FTP:21\nLogin   : pi\nPassword: raspberry"
+            eth0_ok = True
         except:
             disp += "Not connected"
+        if not eth0_ok:
+            try:
+                ipv4 = os.popen('ip addr show wlan0').read().split("inet ")[1].split("/")[0]
+                disp += ipv4
+                disp += "\nSSH:22, FTP:21\nLogin   : pi\nPassword: raspberry"
+            except:
+                disp += "Not connected"
         worker.display(disp)
         worker.keyboardConfig("0900010006000001")
 
