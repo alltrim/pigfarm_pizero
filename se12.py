@@ -599,6 +599,7 @@ class Se12Proc():
         except:
             disp += "Not connected"
         if not eth0_ok:
+            disp = "IP: "
             try:
                 ipv4 = os.popen('ip addr show wlan0').read().split("inet ")[1].split("/")[0]
                 disp += ipv4
