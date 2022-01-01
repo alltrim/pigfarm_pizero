@@ -25,8 +25,7 @@ class Se12Proc():
 
         # RTC
         self._rtc = DS1307Class()
-        #os.system("sudo date -s '" + self._rtc.read_srt_sys_date() + "' > /dev/null")
-        os.system("date -s '" + self._rtc.read_srt_sys_date() + "' > /dev/null")
+        os.system("sudo date -s '" + self._rtc.read_srt_sys_date() + "' > /dev/null")
 
         # Рабочие потоки
         self._worker = Se12Worker(self.onSe12Data, self.onSe12Idle)
@@ -323,8 +322,7 @@ class Se12Proc():
                 self._fail = True
                 return       
 
-            #res = os.system(f"sudo date -s '20{Y:02d}-{M:02d}-{D:02d} {H:02d}:{N:02d}:00' > /dev/null")
-            res = os.system(f"date -s '20{Y:02d}-{M:02d}-{D:02d} {H:02d}:{N:02d}:00' > /dev/null")
+            res = os.system(f"sudo date -s '20{Y:02d}-{M:02d}-{D:02d} {H:02d}:{N:02d}:00' > /dev/null")
             if res != 0:
                 self._fail = True
                 return
